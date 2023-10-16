@@ -1,0 +1,34 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.task-container {
+  width: 720px;
+  border: 1px solid var(--border-color);
+  min-height: 100%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.add-button {
+  background-image: var(--gradient);
+  padding: 20px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 20px #b9b9b9;
+  font-size: 20px;
+}
+
+.create-modal {
+  background-color: var(--bg-color-2);
+}

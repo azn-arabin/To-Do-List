@@ -1,0 +1,110 @@
+:root {
+  --bg-color-1: #fff;
+  --bg-color-2: #f2f7ff;
+  --txt-color-1: #333;
+  --txt-color-2: #fff;
+  --border-color: #ccc;
+  --placeholder-color: #999;
+  --gradient: linear-gradient(to right, #77a1d3 0%, #79cbca 51%, #77a1d3 100%);
+}
+
+.blur1 {
+  background-color: rgba(255, 167, 38, 0.1);
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  border-radius: 50%;
+  filter: blur(72px);
+  top: 18%;
+  left: -20%;
+}
+
+.blur2 {
+  background-color: rgba(77, 255, 172, 0.1);
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  border-radius: 50%;
+  filter: blur(72px);
+  top: 10%;
+  right: -20%;
+}
+
+.btn-grad {
+  background-image: var(--gradient);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #ccc;
+  border-radius: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-grad:after {
+  content: "";
+  background: #79cbca;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+
+.btn-grad:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

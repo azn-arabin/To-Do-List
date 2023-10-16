@@ -1,0 +1,44 @@
+.create-task {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-wrapper {
+  width: 90%;
+  display: flex;
+}
+
+.left-side {
+  display: flex;
+  flex: 1;
+  min-height: 100%;
+  background-image: var(--gradient);
+  border-radius: 20px 0 0 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
+}
+
+.input {
+  height: 45px;
+  border-color: var(--border-color);
+  color: var(--txt-color-1);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.ant-form-vertical .ant-form-item-label label {
+  font-size: 16px;
+}
