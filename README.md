@@ -1,6 +1,6 @@
 # To-Do List App
 
-![To-Do List App Screenshot](public/screenshot.png)
+![To-Do List App Screenshot](/public/Screenshot.png)
 
 ## Description
 
