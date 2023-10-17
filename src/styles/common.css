@@ -21,6 +21,19 @@
   text-decoration: none;
 }
 
+.toggle-btn {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex;
+  gap: 12px;
+  margin: 0 5px;
+  color: var(--txt-color-1) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .no-task {
   display: flex;
   width: 100%;
@@ -28,11 +41,50 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .no-task > img {
   width: 250px;
   height: auto;
+}
+
+.filter-task {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+
+.filter-task > .dp-ctg {
+  flex: 1;
+}
+
+.filter-task > .flt-search {
+  flex: 4;
+}
+
+.search-bar-container {
+  flex: 1;
+  padding: 10px 20px 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-bar-container > input {
+  border: none;
+  border-bottom: 1px solid var(--txt-color-1);
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.search-bar-container > input::placeholder {
+  color: var(--placeholder-color);
 }
 
 .tasks {

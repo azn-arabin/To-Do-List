@@ -59,21 +59,26 @@ const TaskForm: React.FC<TaskFromProps> = ({
           Please enter task name.
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group controlId={"validation3"}>
-        <Form.Label>Category*</Form.Label>
-        <Form.Select
-          aria-label="select"
-          defaultValue={formValues.category}
-          onChange={handleChange}
-          name={"category"}
-        >
-          {categories.map((category, id) => (
-            <option value={category} key={id}>
-              {category}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
+      <div className={"form-category"}>
+        <Form.Group controlId={"validation3"}>
+          <Form.Label>Category*</Form.Label>
+          <Form.Select
+            aria-label="select"
+            defaultValue={formValues.category}
+            onChange={handleChange}
+            name={"category"}
+          >
+            {categories.map((category, id) => (
+              <option value={category} key={id}>
+                {category}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+        <button type={"button"} className={"btn-grad ctg-btn"}>
+          <FontAwesomeIcon icon={faPlus} /> New
+        </button>
+      </div>
       <Form.Group controlId="validationCustom02">
         <Form.Label>Description</Form.Label>
         <Form.Control

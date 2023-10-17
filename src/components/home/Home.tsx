@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateTask from "../perform-task/CreateTask";
@@ -8,39 +8,66 @@ import Tasks from "../common/Tasks";
 import Tooltip from "../common/Tooltip";
 import noRenderImg from "../../assets/images/Nothing.png";
 import noTaskImg from "../../assets/images/No_work_today.png";
+import FilterTasks from "../common/FilterTasks";
+import { Task } from "../../redux/reducers/task.reducer";
 
 const Home: React.FC = () => {
   const [addModal, setAddModal] = useState(false);
   const { tasks, selectedCategory } = useAppSelector((state) => state.todos);
+  const [renderedTask, setRenderedTask] = useState(tasks);
+  const [filteredTask, setFilteredTask] = useState<Task[]>([]);
 
-  const renderedTask =
-    selectedCategory === "All Categories"
-      ? tasks
-          .filter((task) => !task.finished)
-          .sort(
-            (a, b) =>
-              (new Date(b.updated_at) as any) - (new Date(a.updated_at) as any),
-          )
-      : tasks
-          .filter(
-            (task) => task.category === selectedCategory && !task.finished,
-          )
-          .sort(
-            (a, b) =>
-              (new Date(b.updated_at) as any) - (new Date(a.updated_at) as any),
-          );
+  useEffect(() => {
+    const renTasks =
+      selectedCategory === "All Categories"
+        ? tasks
+            .filter((task) => !task.finished)
+            .sort(
+              (a, b) =>
+                (new Date(b.updated_at) as any) -
+                (new Date(a.updated_at) as any),
+            )
+        : tasks
+            .filter(
+              (task) => task.category === selectedCategory && !task.finished,
+            )
+            .sort(
+              (a, b) =>
+                (new Date(b.updated_at) as any) -
+                (new Date(a.updated_at) as any),
+            );
+    setRenderedTask(renTasks);
+    setFilteredTask(renTasks);
+  }, [selectedCategory, tasks]);
+
+  const handleSearchChange = (value: string) => {
+    if (value) {
+      const filtered = renderedTask.filter(
+        (task) => task.title.toLowerCase().indexOf(value.toLowerCase()) > -1,
+      );
+      setFilteredTask(filtered);
+    } else {
+      setFilteredTask(renderedTask);
+    }
+  };
 
   return (
     <div className={"td-container"}>
       <div className={"task-container"}>
         {tasks.length ? (
           renderedTask.length ? (
-            <Tasks tasks={renderedTask} />
+            <>
+              <FilterTasks onChange={handleSearchChange} />
+              <Tasks tasks={filteredTask} />
+            </>
           ) : (
-            <div className={"no-task"}>
-              <img src={noRenderImg} alt="Nothing to render" />
-              <p>No task found for {selectedCategory} category.</p>
-            </div>
+            <>
+              <FilterTasks onChange={handleSearchChange} />
+              <div className={"no-task"}>
+                <img src={noRenderImg} alt="Nothing to render" />
+                <p>No task found for {selectedCategory} category.</p>
+              </div>
+            </>
           )
         ) : (
           <div className={"no-task"}>

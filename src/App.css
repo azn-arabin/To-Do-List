@@ -76,3 +76,12 @@
   opacity: 1;
   transition: 0s;
 }
+
+@media (max-width: 700px) {
+  .blur1 {
+    left: 0;
+  }
+  .blur2 {
+    right: 0;
+  }
+}
