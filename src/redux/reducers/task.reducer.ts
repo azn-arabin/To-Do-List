@@ -69,8 +69,13 @@ const taskReducer = (
         categories: state.categories.map((category) =>
           category === action.payload.name ? action.payload.newName : category,
         ),
-        tasks: state.tasks.filter(
-          (task) => task.category !== action.payload.name,
+        tasks: state.tasks.map((task) =>
+          task.category === action.payload.name
+            ? {
+                ...task,
+                category: action.payload.newName,
+              }
+            : task,
         ),
       };
     case TASK.DELETE_CATEGORY:
