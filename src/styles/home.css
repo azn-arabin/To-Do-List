@@ -1,4 +1,4 @@
-.home {
+.td-container {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -6,29 +6,31 @@
   padding: 10px 0;
 }
 
+.toggle-btn {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex;
+  gap: 8px;
+  margin: 0 5px;
+}
+
 .task-container {
   width: 720px;
-  border: 1px solid var(--border-color);
   min-height: 100%;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  padding: 70px 10px 10px 50px;
 }
 
 .add-button {
   background-image: var(--gradient);
   padding: 20px;
-  border-radius: 50%;
-  position: absolute;
+  border-radius: 100%;
+  position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: calc((100vw - 720px) / 2 + 15px);
   font-weight: bold;
   box-shadow: 0 0 20px #b9b9b9;
   font-size: 20px;
-}
-
-.create-modal {
-  background-color: var(--bg-color-2);
+  z-index: 1;
 }

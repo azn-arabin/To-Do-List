@@ -1,0 +1,128 @@
+.navbar {
+  background-image: var(--gradient);
+}
+
+.nav-brand {
+  display: flex;
+  gap: 8px;
+  font-weight: bold;
+  align-items: center;
+  color: var(--txt-color-2);
+  text-decoration: none;
+}
+
+.nav-item {
+  color: var(--txt-color-2);
+  display: flex;
+  gap: 5px;
+  font-size: 16px;
+  margin: 0 5px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.no-task {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.no-task > img {
+  width: 250px;
+  height: auto;
+}
+
+.tasks {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  padding: 15px 20px;
+  border-radius: 15px;
+  background-color: var(--bg-color-1);
+  gap: 15px;
+}
+
+.task > .checkbox {
+  align-self: center;
+  z-index: 1;
+}
+
+.task > .t-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.t-titles > .main-title {
+  min-width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-title > h5 {
+  flex: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.main-title > .category {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #ff1493;
+}
+
+.t-titles > p {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon-container {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.edit-icon {
+  z-index: 1;
+}
+
+.delete-icon {
+  z-index: 1;
+  color: #ff1493;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+  cursor: pointer;
+}
+
+.footer {
+  padding: 50px 0;
+  text-align: center;
+  background-color: var(--bg-color-1);
+  opacity: 80%;
+}

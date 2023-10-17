@@ -1,8 +1,9 @@
-import React from "react";
-import { message, Modal } from "antd";
+import React, { useState } from "react";
 import TaskForm from "./TaskForm";
 import { useAppDispatch } from "../../redux/store/redux.store";
-import { createTask, TaskData } from "../../redux/actions/task.action";
+import { createTask } from "../../redux/actions/task.action";
+import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 interface CreateTaskProps {
   modal: boolean;
@@ -11,28 +12,47 @@ interface CreateTaskProps {
 
 const CreateTask: React.FC<CreateTaskProps> = ({ modal, setModal }) => {
   const dispatch = useAppDispatch();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [formValues, setFormValues] = useState({
+    title: "",
+    category: "Default",
+    description: "",
+  });
 
-  const formValues = { title: "", priority: "", category: "", description: "" };
-  const handleSubmit = (values: TaskData) => {
-    dispatch(createTask(values));
+  const handleChange = (e: any) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    dispatch(createTask(formValues));
     setModal(false);
-    messageApi.info("Successfully Created a new Task!");
+    setFormValues({
+      title: "",
+      category: "Default",
+      description: "",
+    });
+    toast.success("Successfully created a new task", {
+      theme: "colored",
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   };
 
   return (
-    <>
-      {contextHolder}
-      <Modal
-        centered
-        open={modal}
-        footer={null}
-        onCancel={() => setModal(false)}
-        title={"Create New Task"}
-      >
-        <TaskForm formValues={formValues} handleSubmit={handleSubmit} />
-      </Modal>
-    </>
+    <Modal show={modal} onHide={() => setModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Create a Task</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <TaskForm
+          formValues={formValues}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          btnTxt={"Create Task"}
+        />
+      </Modal.Body>
+    </Modal>
   );
 };
 

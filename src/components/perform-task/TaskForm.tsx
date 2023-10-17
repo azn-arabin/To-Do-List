@@ -1,84 +1,97 @@
-import React from "react";
-import "../../styles/task.css";
-import { Form, Input, Radio } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import TextArea from "antd/es/input/TextArea";
+import React, { useState } from "react";
+import "../../styles/perform-task.css";
+import Form from "react-bootstrap/Form";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAppSelector } from "../../redux/store/redux.store";
 
 interface TaskFromProps {
   formValues: {
     title: string;
-    priority: string;
     category: string;
     description: string;
   };
-  handleSubmit: (values: any) => void;
+  handleSubmit: () => void;
+  handleChange: (e: any) => void;
+  btnTxt: string;
 }
-const TaskForm: React.FC<TaskFromProps> = ({ formValues, handleSubmit }) => {
+const TaskForm: React.FC<TaskFromProps> = ({
+  formValues,
+  handleSubmit,
+  handleChange,
+  btnTxt,
+}) => {
+  const [validated, setValidated] = useState(false);
+  const categories = useAppSelector((state) => state.todos.categories);
+
+  const handleFromSubmit = (event: any) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      handleSubmit();
+    }
+
+    setValidated(true);
+  };
+
   return (
     <Form
+      noValidate
+      validated={validated}
       className={"form-container"}
-      layout="vertical"
-      onFinish={handleSubmit}
+      onSubmit={handleFromSubmit}
     >
-      <Form.Item
-        label="Ttile"
-        name="title"
-        rules={[
-          { required: true, message: "Please enter your task title!" },
-          { min: 2, message: "Title must be at least 2 characters!" },
-          { max: 50, message: "Maximum 50 characters for title!" },
-        ]}
-      >
-        <Input
+      <Form.Group controlId="validationCustom01">
+        <Form.Label>Task Name*</Form.Label>
+        <Form.Control
+          required
+          type="text"
+          name="title"
           value={formValues.title}
-          className={"input"}
-          placeholder="Task title..."
+          onChange={handleChange}
+          placeholder="Task name..."
+          maxLength={50}
         />
-      </Form.Item>
-      <Form.Item
-        label={"Priority"}
-        name={"priority"}
-        rules={[{ required: true, message: "Please select priority!" }]}
-      >
-        <Radio.Group value={formValues.priority}>
-          <Radio value={"low"}>Low</Radio>
-          <Radio value={"medium"}>Medium</Radio>
-          <Radio value={"high"}>High</Radio>
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item
-        label="Category"
-        name={"category"}
-        rules={[{ required: true, message: "Please enter category!" }]}
-      >
-        <Input
-          value={formValues.category}
-          className={"input"}
-          placeholder="Task category..."
-        />
-      </Form.Item>
-      <Form.Item
-        label={"Description"}
-        name={"description"}
-        rules={[
-          { required: true, message: "Please enter description!" },
-          { min: 10, message: "Title must be at least 10 characters!" },
-          { max: 200, message: "Maximum 200 characters for title!" },
-        ]}
-      >
-        <TextArea
-          placeholder="Description..."
-          autoSize={{ minRows: 3, maxRows: 4 }}
-          className={"input"}
+        <Form.Control.Feedback type={"invalid"}>
+          Please enter task name.
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId={"validation3"}>
+        <Form.Label>Category*</Form.Label>
+        <Form.Select
+          aria-label="select"
+          defaultValue={formValues.category}
+          onChange={handleChange}
+          name={"category"}
+        >
+          {categories.map((category, id) => (
+            <option value={category} key={id}>
+              {category}
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
+      <Form.Group controlId="validationCustom02">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          name="description"
           value={formValues.description}
+          onChange={handleChange}
+          placeholder="A short description of your task..."
+          style={{ height: "90px" }}
+          maxLength={200}
         />
-      </Form.Item>
+      </Form.Group>
       <button
         type={"submit"}
         className={"btn-grad"}
         style={{ marginTop: "10px" }}
       >
-        <PlusOutlined /> Create Task
+        <FontAwesomeIcon icon={faPlus} /> {btnTxt}
       </button>
     </Form>
   );
