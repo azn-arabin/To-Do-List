@@ -40,72 +40,74 @@ const TaskForm: React.FC<TaskFromProps> = ({
   };
 
   return (
-    <Form
-      noValidate
-      validated={validated}
-      className={"form-container"}
-      onSubmit={handleFromSubmit}
-    >
-      <Form.Group controlId="validationCustom01">
-        <Form.Label>Task Name*</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          name="title"
-          value={formValues.title}
-          onChange={handleChange}
-          placeholder="Task name..."
-          maxLength={50}
-        />
-        <Form.Control.Feedback type={"invalid"}>
-          Please enter task name.
-        </Form.Control.Feedback>
-      </Form.Group>
-      <div className={"form-category"}>
-        <Form.Group controlId={"validation3"}>
-          <Form.Label>Category*</Form.Label>
-          <Form.Select
-            aria-label="select"
-            defaultValue={formValues.category}
+    <>
+      <Form
+        noValidate
+        validated={validated}
+        className={"form-container"}
+        onSubmit={handleFromSubmit}
+      >
+        <Form.Group controlId="validationCustom01">
+          <Form.Label>Task Name*</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            name="title"
+            value={formValues.title}
             onChange={handleChange}
-            name={"category"}
+            placeholder="Task name..."
+            maxLength={50}
+          />
+          <Form.Control.Feedback type={"invalid"}>
+            Please enter task name.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <div className={"form-category"}>
+          <Form.Group controlId={"validation3"}>
+            <Form.Label>Category*</Form.Label>
+            <Form.Select
+              aria-label="select"
+              defaultValue={formValues.category}
+              onChange={handleChange}
+              name={"category"}
+            >
+              {categories.map((category, id) => (
+                <option value={category} key={id}>
+                  {category}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+          <button
+            type={"button"}
+            className={"btn-grad ctg-btn"}
+            onClick={() => setCrCategoryModal(true)}
           >
-            {categories.map((category, id) => (
-              <option value={category} key={id}>
-                {category}
-              </option>
-            ))}
-          </Form.Select>
+            <FontAwesomeIcon icon={faPlus} /> New
+          </button>
+        </div>
+        <Form.Group controlId="validationCustom02">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="description"
+            value={formValues.description}
+            onChange={handleChange}
+            placeholder="A short description of your task..."
+            style={{ height: "90px" }}
+            maxLength={200}
+          />
         </Form.Group>
         <button
-          type={"button"}
-          className={"btn-grad ctg-btn"}
-          onClick={() => setCrCategoryModal(true)}
+          type={"submit"}
+          className={"btn-grad"}
+          style={{ marginTop: "10px" }}
         >
-          <FontAwesomeIcon icon={faPlus} /> New
+          <FontAwesomeIcon icon={faPlus} /> {btnTxt}
         </button>
-      </div>
-      <Form.Group controlId="validationCustom02">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          as="textarea"
-          name="description"
-          value={formValues.description}
-          onChange={handleChange}
-          placeholder="A short description of your task..."
-          style={{ height: "90px" }}
-          maxLength={200}
-        />
-      </Form.Group>
-      <button
-        type={"submit"}
-        className={"btn-grad"}
-        style={{ marginTop: "10px" }}
-      >
-        <FontAwesomeIcon icon={faPlus} /> {btnTxt}
-      </button>
+      </Form>
       <CreateCategory modal={crCategoryModal} setModal={setCrCategoryModal} />
-    </Form>
+    </>
   );
 };
 
