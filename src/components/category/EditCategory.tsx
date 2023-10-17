@@ -36,7 +36,7 @@ const EditCategory: React.FC<EditCategoryProps> = ({
       handleSubmit={handleSubmit}
       handleChange={setName}
       btnTxt={"Create Category"}
-      titleTxt={"Create New Category"}
+      titleTxt={"Edit Category"}
       modal={modal}
       setModal={setModal}
     />

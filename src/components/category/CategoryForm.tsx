@@ -31,7 +31,7 @@ const CategoryForm: React.FC<CategoryFormProps> = (props) => {
   return (
     <Modal show={props.modal} onHide={() => props.setModal(false)}>
       <Modal.Header closeButton>
-        <Modal.Title>Create a Task</Modal.Title>
+        <Modal.Title>{props.titleTxt}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
