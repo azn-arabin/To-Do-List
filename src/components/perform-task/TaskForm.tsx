@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppSelector } from "../../redux/store/redux.store";
+import CreateCategory from "../category/CreateCategory";
 
 interface TaskFromProps {
   formValues: {
@@ -23,6 +24,7 @@ const TaskForm: React.FC<TaskFromProps> = ({
 }) => {
   const [validated, setValidated] = useState(false);
   const categories = useAppSelector((state) => state.todos.categories);
+  const [crCategoryModal, setCrCategoryModal] = useState(false);
 
   const handleFromSubmit = (event: any) => {
     event.preventDefault();
@@ -75,7 +77,11 @@ const TaskForm: React.FC<TaskFromProps> = ({
             ))}
           </Form.Select>
         </Form.Group>
-        <button type={"button"} className={"btn-grad ctg-btn"}>
+        <button
+          type={"button"}
+          className={"btn-grad ctg-btn"}
+          onClick={() => setCrCategoryModal(true)}
+        >
           <FontAwesomeIcon icon={faPlus} /> New
         </button>
       </div>
@@ -98,6 +104,7 @@ const TaskForm: React.FC<TaskFromProps> = ({
       >
         <FontAwesomeIcon icon={faPlus} /> {btnTxt}
       </button>
+      <CreateCategory modal={crCategoryModal} setModal={setCrCategoryModal} />
     </Form>
   );
 };

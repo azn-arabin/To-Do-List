@@ -58,6 +58,29 @@ const taskReducer = (
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
+    case TASK.CREATE_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories, action.payload],
+      };
+    case TASK.UPDATE_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.map((category) =>
+          category === action.payload.name ? action.payload.newName : category,
+        ),
+        tasks: state.tasks.filter(
+          (task) => task.category !== action.payload.name,
+        ),
+      };
+    case TASK.DELETE_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.filter(
+          (category) => category !== action.payload,
+        ),
+        tasks: state.tasks.filter((task) => task.category !== action.payload),
+      };
     default:
       return state;
   }

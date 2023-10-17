@@ -114,7 +114,7 @@
 .task > .t-titles {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   overflow: hidden;
   flex: 1;
 }
@@ -133,6 +133,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-transform: capitalize;
+  font-weight: 450;
 }
 
 .main-title > .category {
@@ -148,6 +149,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 400;
 }
 
 .icon-container {
