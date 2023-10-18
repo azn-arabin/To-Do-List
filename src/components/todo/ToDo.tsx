@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/home.css";
+import "../../styles/todo.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CreateTask from "../perform-task/CreateTask";
+import CreateTask from "./CreateTask";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector } from "../../redux/store/redux.store";
 import Tasks from "../common/Tasks";
@@ -11,7 +11,7 @@ import noTaskImg from "../../assets/images/No_work_today.png";
 import FilterTasks from "../common/FilterTasks";
 import { Task } from "../../redux/reducers/task.reducer";
 
-const Home: React.FC = () => {
+const ToDo: React.FC = () => {
   const [addModal, setAddModal] = useState(false);
   const { tasks, selectedCategory } = useAppSelector((state) => state.todos);
   const [renderedTask, setRenderedTask] = useState(tasks);
@@ -89,4 +89,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default ToDo;

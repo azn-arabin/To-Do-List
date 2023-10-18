@@ -13,6 +13,7 @@ import { deleteCategory } from "../../redux/actions/task.action";
 import SearchBar from "../common/SearchBar";
 import CreateCategory from "./CreateCategory";
 import EditCategory from "./EditCategory";
+import Confirmation from "../common/Confirmation";
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +26,9 @@ const CategoryList = () => {
   >([]);
   const [createModal, setCreateModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [editName, setEditName] = useState("");
+  const [editCategory, setEditCategory] = useState("");
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [deletedCategory, setDeletedCategory] = useState("");
 
   useEffect(() => {
     // Count occurrences of each category
@@ -62,6 +65,15 @@ const CategoryList = () => {
     }
   };
 
+  const confirmDelete = () => {
+    toast.success(`Successfully deleted the ${deletedCategory} category`, {
+      theme: "colored",
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+    dispatch(deleteCategory(deletedCategory));
+    setConfirmModal(false);
+  };
+
   return (
     <div className={"td-container"}>
       <div className={"task-container"}>
@@ -79,7 +91,7 @@ const CategoryList = () => {
                     className={"edit-icon"}
                     onClick={() => {
                       setEditModal(true);
-                      setEditName(category.name);
+                      setEditCategory(category.name);
                     }}
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
@@ -89,14 +101,8 @@ const CategoryList = () => {
                   <div
                     className={"delete-icon"}
                     onClick={() => {
-                      toast.success(
-                        `Successfully deleted the ${category.name} category`,
-                        {
-                          theme: "colored",
-                          position: toast.POSITION.BOTTOM_RIGHT,
-                        },
-                      );
-                      dispatch(deleteCategory(category.name));
+                      setDeletedCategory(category.name);
+                      setConfirmModal(true);
                     }}
                   >
                     <FontAwesomeIcon icon={faTrashCan} />
@@ -120,7 +126,13 @@ const CategoryList = () => {
       <EditCategory
         modal={editModal}
         setModal={setEditModal}
-        prevName={editName}
+        prevName={editCategory}
+      />
+      <Confirmation
+        modal={confirmModal}
+        handleClose={setConfirmModal}
+        message={`All tasks under ${deletedCategory} will also be deleted!`}
+        onConfirm={confirmDelete}
       />
     </div>
   );

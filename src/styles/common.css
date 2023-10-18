@@ -169,6 +169,11 @@
   color: #ff1493;
 }
 
+.confirm-btn {
+  text-transform: none;
+  outline: none;
+}
+
 .edit-icon:hover,
 .delete-icon:hover {
   cursor: pointer;

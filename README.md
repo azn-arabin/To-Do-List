@@ -6,6 +6,28 @@
 
 The To-Do List App is a simple and elegant task management application designed to help you organize your daily tasks efficiently. With a user-friendly interface, it provides a seamless experience for adding, managing, and completing tasks.
 
+## Folder Structure
+
+- `src/`
+  - `components/`
+    - `common/`
+      - Common components shared across different routes.
+    - `todo/`
+      - Components specific to the 'Todo' route.
+    - `category/`
+      - Components specific to the 'Category' route.
+    - `finished/`
+      - Components specific to the 'Finished' route.
+  - `styles/`
+    - `todo.css`
+      - Styles for components in the 'Todo' route.
+    - `category.css`
+      - Styles for components in the 'Category' route.
+    - `finished.css`
+      - Styles for components in the 'Finished' route.
+    - `common.css`
+      - Common styles shared across different routes.
+
 ## Dependencies
 
 This project utilizes the following dependencies:

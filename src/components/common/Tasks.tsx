@@ -11,13 +11,24 @@ import { useAppDispatch } from "../../redux/store/redux.store";
 import { deleteTask, updateTask } from "../../redux/actions/task.action";
 import { toast } from "react-toastify";
 import Tooltip from "./Tooltip";
-import EditTask from "../perform-task/EditTask";
+import EditTask from "../todo/EditTask";
+import Confirmation from "./Confirmation";
 
 interface TaskProps {
   tasks: Task[];
 }
 const Tasks: React.FC<TaskProps> = ({ tasks }) => {
   const [editModal, setEditModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [deletedTask, setDeletedTask] = useState<Task>({
+    id: 0,
+    title: "",
+    description: "",
+    created_at: "",
+    updated_at: "",
+    finished: false,
+    category: "",
+  });
   const [editTask, setEditTask] = useState<Task>({
     id: 0,
     title: "",
@@ -28,6 +39,15 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
     category: "",
   });
   const dispatch = useAppDispatch();
+
+  const confirmDelete = () => {
+    toast.success(`Successfully deleted the ${deletedTask.title} task`, {
+      theme: "colored",
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+    dispatch(deleteTask(deletedTask.id));
+    setConfirmModal(false);
+  };
 
   return (
     <div className={"tasks"}>
@@ -83,11 +103,8 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
               <div
                 className={"delete-icon"}
                 onClick={() => {
-                  toast.success(`Successfully deleted the ${task.title} task`, {
-                    theme: "colored",
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                  });
-                  dispatch(deleteTask(task.id));
+                  setDeletedTask(task);
+                  setConfirmModal(true);
                 }}
               >
                 <FontAwesomeIcon icon={faTrashCan} />
@@ -97,6 +114,12 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
         </div>
       ))}
       <EditTask modal={editModal} setModal={setEditModal} task={editTask} />
+      <Confirmation
+        modal={confirmModal}
+        handleClose={setConfirmModal}
+        message={`The task ${deletedTask.title} will be deleted permanently!`}
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../styles/perform-task.css";
 import Form from "react-bootstrap/Form";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

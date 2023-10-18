@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "./styles/common.css";
-import Home from "./components/home/Home";
+import ToDo from "./components/todo/ToDo";
 import Container from "react-bootstrap/Container";
 import TDNavbar from "./components/common/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -22,7 +22,7 @@ function App() {
       <TDNavbar />
       <Container>
         <Routes>
-          <Route path={"/"} element={<Home />} />
+          <Route path={"/"} element={<ToDo />} />
           <Route path={"/finished"} element={<FinishedTask />} />
           <Route path={"/category"} element={<CategoryList />} />
         </Routes>
