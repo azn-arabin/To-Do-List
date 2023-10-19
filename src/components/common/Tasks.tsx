@@ -95,6 +95,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
                   setEditTask(task);
                   setEditModal(true);
                 }}
+                data-testid={`open-edit-task-modal-${id}`}
               >
                 <FontAwesomeIcon icon={faPenToSquare} />
               </div>

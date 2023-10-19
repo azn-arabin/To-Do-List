@@ -45,6 +45,7 @@ const TaskForm: React.FC<TaskFromProps> = ({
         validated={validated}
         className={"form-container"}
         onSubmit={handleFromSubmit}
+        data-testid={"task-form"}
       >
         <Form.Group controlId="validationCustom01">
           <Form.Label>Task Name*</Form.Label>
@@ -81,6 +82,7 @@ const TaskForm: React.FC<TaskFromProps> = ({
             type={"button"}
             className={"btn-grad ctg-btn"}
             onClick={() => setCrCategoryModal(true)}
+            data-testid="open-create-category-modal"
           >
             <FontAwesomeIcon icon={faPlus} /> New
           </button>
@@ -98,6 +100,7 @@ const TaskForm: React.FC<TaskFromProps> = ({
           />
         </Form.Group>
         <button
+          data-testid="create-task-submit-btn"
           type={"submit"}
           className={"btn-grad"}
           style={{ marginTop: "10px" }}

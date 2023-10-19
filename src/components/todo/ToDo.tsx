@@ -77,6 +77,7 @@ const ToDo: React.FC = () => {
         )}
         <Tooltip tooltip={"Add New Task"} placement={"top"}>
           <button
+            data-testid="open-create-task-modal"
             className={"btn-grad add-button"}
             onClick={() => setAddModal(true)}
           >

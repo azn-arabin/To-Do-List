@@ -13,27 +13,21 @@ function TDNavbar() {
   return (
     <Navbar expand="sm" className="navbar" fixed={"top"}>
       <Container>
-        <Navbar.Brand href="#">
-          <Link to={"/"} className={"nav-brand"}>
-            <FontAwesomeIcon icon={faTableList} />
-            ToDo
-          </Link>
-        </Navbar.Brand>
+        <Link to={"/"} className={"nav-brand"}>
+          <FontAwesomeIcon icon={faTableList} />
+          ToDo
+        </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto">
-            <Nav.Link href="#">
-              <Link to="/category" className="nav-item">
-                <FontAwesomeIcon icon={faClipboard} />
-                Categories
-              </Link>
-            </Nav.Link>
-            <Nav.Link href="#">
-              <Link to="/finished" className="nav-item">
-                <FontAwesomeIcon icon={faSquareCheck} />
-                Finished
-              </Link>
-            </Nav.Link>
+            <Link to="/category" className="nav-item">
+              <FontAwesomeIcon icon={faClipboard} />
+              Categories
+            </Link>
+            <Link to="/finished" className="nav-item">
+              <FontAwesomeIcon icon={faSquareCheck} />
+              Finished
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
